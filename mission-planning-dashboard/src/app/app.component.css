@@ -1,0 +1,12 @@
+.box {
+    display: flex;
+    padding: 10px;
+}
+.col {
+    float: left;
+    width: 33.33%;
+    padding-left: 100px;
+}
+.header {
+    text-align: center;
+}
