@@ -1,20 +1,21 @@
-<h3>Equipment</h3>
-<ul>
-  <li *ngFor="let item of equipment">
-    <span *ngIf="itemBeingEdited !== item; else itemBlock">
-      <span (click)="edit(item)" class="editable-text">{{item}}</span>
-      <button (click)="remove(item)">remove</button>
-    </span>
-    <ng-template #itemBlock>
-      <input #newName (keyup.enter)="save(newName.value, item)" value="{{item}}"/>
-      <button (click)="save(newName.value, item)">save</button>
-    </ng-template>
-  </li>
-</ul>
+<div class="displayBox">
+  <h3>Equipment</h3>
+  <ol>
+      <li *ngFor="let item of equipmentItems">
+          <!-- "Add to Cargo Hold" button goes here. -->
+          {{item.name}}, {{item.mass}} kg
+      </li>
+  </ol>
+</div>
 
-<input #newItemName 
-(keyup.enter)="add(newItemName.value); newItemName.value=''" 
-(blur)="add(newItemName.value); newItemName.value='' "
-type="text"/>
+<hr>
 
-<button (click)="add(newItemName.value)">Add</button>
+<div class = "displayBox">
+  <h3>Cargo Hold: {{cargoHold.length}}/{{maxItems}} Spots Filled</h3>
+  <ol>
+      <li *ngFor="let equipment of cargoHold">{{equipment.name}}</li>
+  </ol>
+  <p>Mass in Hold: {{cargoMass}} kg</p>
+  <p>Mass Budget Remaining: {{<!-- Calculate mass remaining here. -->}} kg</p>
+  <!-- Add the "Empty Hold" button here. -->
+</div>
