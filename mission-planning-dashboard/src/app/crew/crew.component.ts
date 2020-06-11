@@ -29,26 +29,4 @@ export class CrewComponent implements OnInit {
     // To-Do
   }
 
-
-  add(member: string, status: boolean) {
-    let nameList = [];
-    for (let i = 0; i < this.crew.length; i++) {
-      nameList.push(this.crew[i]['name']);
-    }
-    if (!nameList.includes(member)) {
-      this.crew.push({name: member, firstMission: status});
-    }
-  }
-  remove(member: object) {
-    let index = this.crew.indexOf(member);
-    this.crew.splice(index, 1);
-  }
-  edit(member: object) {
-    this.memberBeingEdited = member;
-  }
-  save(name: string, member: object) {
-    member['name'] = name;
-    this.memberBeingEdited = null;
-  }
-
 }

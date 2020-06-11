@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipment.component.css']
 })
 export class EquipmentComponent implements OnInit {
-  equipment: string[] = ['Habitat dome', 'Drones', 'Food containers', 'Oxygen tanks'];
-  itemBeingEdited: string = null;
-
   equipmentItems: object[] = [
     {name: 'Duct Tape', mass: 0.5},
     {name: 'Space Camera', mass: 20},
@@ -34,21 +31,4 @@ maxItems: number = 10;
     // To-Do
   }
 
-  add(name: string) {
-    if (!this.equipment.includes(name)) {
-      this.equipment.push(name);
-    }
-  }
-  remove(item: string) {
-    let index = this.equipment.indexOf(item);
-    this.equipment.splice(index, 1);
-  }
-  edit(item: string) {
-    this.itemBeingEdited = item;
-  }
-  save(newName: string, itemName: string) {
-    let index = this.equipment.indexOf(itemName);
-    this.equipment[index] = newName;
-    this.itemBeingEdited = null;
-  }
 }
