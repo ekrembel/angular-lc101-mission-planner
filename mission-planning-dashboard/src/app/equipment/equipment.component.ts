@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { reverse } from 'dns';
 
 @Component({
   selector: 'app-equipment',
@@ -20,15 +21,46 @@ export class EquipmentComponent implements OnInit {
 cargoHold: object[] = [];
 cargoMass: number = 0;
 maximumAllowedMass: number = 2000;
-maxItems: number = 10;  
-
+maxItems: number = 10; 
+remainingMass: number = 2000;
+disabled: boolean = false;
+nearMax: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-  addItem() {
-    // To-Do
+  addItem(item: object, button) {
+    // button.style.backgroundColor = "white";
+    if ( this.cargoMass + item['mass']  <= this.maximumAllowedMass) {
+      this.cargoHold.push(item);
+      this.cargoMass += item['mass'];
+      this.remainingMass -= item['mass'];
+      button.disabled = !this.disabled;
+      button.style.backgroundColor = "white";
+      if (this.cargoHold.length >= 10) {
+        this.disabled = true;
+        // button.style.backgroundColor = "white";
+      }
+      if (this.remainingMass <= 200 ) {
+        this.nearMax = true;
+        return true;
+      }
+      if (this.remainingMass > 200 ){
+        return false;
+      }
+    }
+    else if (this.cargoMass + item['mass']  > this.maximumAllowedMass) {
+      this.disabled = true;
+    }
+  }
+  clearCargo() {
+    this.cargoHold = [];
+    this.cargoMass = 0;
+    this.disabled = false;
+    this.nearMax = false;
+    this.remainingMass = 2000;
+    
   }
 
 }
